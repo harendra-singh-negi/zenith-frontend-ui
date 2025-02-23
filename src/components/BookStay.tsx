@@ -1,5 +1,5 @@
-import React from 'react';
 import { Bed, Bath, SquareCode } from 'lucide-react';
+import { Element } from 'react-scroll';
 
 const rooms = [
   {
@@ -62,11 +62,11 @@ const RoomCard = ({ room }: { room: typeof rooms[0] }) => {
           className="w-full h-full object-cover"
         />
       </div>
-      
+
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{room.title}</h3>
         <p className="text-gray-600 mb-4">{room.description}</p>
-        
+
         <div className="flex items-center gap-4 text-gray-600 mb-6">
           <div className="flex items-center gap-1">
             <Bed className="w-5 h-5" />
@@ -81,7 +81,7 @@ const RoomCard = ({ room }: { room: typeof rooms[0] }) => {
             <span>{room.area} Sq Ft</span>
           </div>
         </div>
-        
+
         <button className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition-colors">
           More Info
         </button>
@@ -92,27 +92,29 @@ const RoomCard = ({ room }: { room: typeof rooms[0] }) => {
 
 const BookStay = () => {
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold">
-            Book Your <span className="text-red-500">Stay With Us</span>
-          </h2>
-        </div>
+    <Element name="services">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold">
+              Book Your <span className="text-red-500">Stay With Us</span>
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {rooms.map((room, index) => (
-            <RoomCard key={index} room={room} />
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {rooms.map((room, index) => (
+              <RoomCard key={index} room={room} />
+            ))}
+          </div>
 
-        <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-12 py-4 rounded-full text-lg font-semibold hover:from-red-600 hover:to-orange-600 transition-all">
-            Book Now
-          </button>
+          <div className="text-center mt-12">
+            <button className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-12 py-4 rounded-full text-lg font-semibold hover:from-red-600 hover:to-orange-600 transition-all">
+              Book Now
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Element>
   );
 };
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { Element } from 'react-scroll';
 
 type TabType = 'common' | 'rooms' | 'dining' | 'study';
 
@@ -82,68 +83,70 @@ const PhotoGallery = () => {
   };
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold">Photo Gallery</h2>
-        </div>
+    <Element name="gallery">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold">Photo Gallery</h2>
+          </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={clsx(
-                'px-6 py-2 rounded-full transition-all duration-300',
-                activeTab === tab.id
-                  ? 'bg-red-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              )}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={clsx(
+                  'px-6 py-2 rounded-full transition-all duration-300',
+                  activeTab === tab.id
+                    ? 'bg-red-500 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                )}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages[activeTab].map((image, index) => (
-            <div
-              key={index}
-              className="relative group cursor-pointer overflow-hidden rounded-lg"
-              onClick={() => openLightbox(index)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  View Image
-                </span>
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages[activeTab].map((image, index) => (
+              <div
+                key={index}
+                className="relative group cursor-pointer overflow-hidden rounded-lg"
+                onClick={() => openLightbox(index)}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    View Image
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Explore More Button */}
-        <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-red-600 hover:to-orange-600 transition-all">
-            Explore Gallery
-          </button>
-        </div>
+          {/* Explore More Button */}
+          <div className="text-center mt-12">
+            <button className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-red-600 hover:to-orange-600 transition-all">
+              Explore Gallery
+            </button>
+          </div>
 
-        {/* Lightbox */}
-        <Lightbox
-          open={lightboxOpen}
-          close={() => setLightboxOpen(false)}
-          index={lightboxIndex}
-          slides={galleryImages[activeTab].map(img => ({ src: img.src }))}
-        />
-      </div>
-    </section>
+          {/* Lightbox */}
+          <Lightbox
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            index={lightboxIndex}
+            slides={galleryImages[activeTab].map(img => ({ src: img.src }))}
+          />
+        </div>
+      </section>
+    </Element>
   );
 };
 
