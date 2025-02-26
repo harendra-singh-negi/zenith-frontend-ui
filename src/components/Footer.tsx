@@ -1,116 +1,102 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
-import { Element } from 'react-scroll';
+import React from "react";
+import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail } from "lucide-react";
+import { footerData } from "../utils/footerData";
+import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Footer: React.FC = () => {
+  const { logo, socialLinks, navigation, contact, mapLocation } = footerData;
+
+  // Icon Mapping
+  const iconMap: { [key: string]: JSX.Element } = {
+    facebook: <Facebook size={18} />,
+    twitter: <Twitter size={18} />,
+    linkedin: <Linkedin size={18} />,
+    instagram: <Instagram size={18} />,
+    youtube: <Youtube size={18} />,
+  };
+
   return (
-    <Element name="contact">
-      <footer className="relative">
-        {/* Curved top border */}
-        <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-r from-red-500 to-orange-500"
-            style={{
-              borderRadius: '50%/0 0 100% 100%',
-              transform: 'scaleX(1.5)',
-            }}
-          />
-        </div>
+    <footer className="relative bg-black text-white">
+      {/* Curved Gradient Section */}
+      <div className="relative w-full h-24 md:h-32 overflow-hidden">
+        <svg
+          className="absolute top-0 left-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="url(#footer-gradient)"
+            fillOpacity="1"
+            d="M0,256L80,229.3C160,203,320,149,480,128C640,107,800,117,960,149.3C1120,181,1280,235,1360,261.3L1440,288L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+          ></path>
+          <defs>
+            <linearGradient id="footer-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style={{ stopColor: "#FF0000", stopOpacity: 1 }} />
+              <stop offset="50%" style={{ stopColor: "#FF8000", stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: "#FFD700", stopOpacity: 1 }} />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-        {/* Main footer content */}
-        <div className="bg-black text-white pt-32 pb-16">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Logo and Social Links */}
-              <div>
-                <div className="flex items-center gap-2 mb-6">
-                  <Mail className="w-8 h-8" />
-                  <span className="text-2xl font-bold">Logo</span>
-                </div>
-                <p className="text-gray-400 mb-6">Join Us</p>
-                <div className="flex gap-4">
-                  <a href="http://www.facebook.com/zenithhostel" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                    <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/facebook.svg" alt="Facebook" className="w-5 h-5 invert" />
-                  </a>
-                  {/* <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/x.svg" alt="X" className="w-5 h-5 invert" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/linkedin.svg" alt="LinkedIn" className="w-5 h-5 invert" />
-                </a> */}
-                  <a href="https://instagram.com/zenithyouthhostel" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                    <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/instagram.svg" alt="Instagram" className="w-5 h-5 invert" />
-                  </a>
-                  {/* <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/youtube.svg" alt="YouTube" className="w-5 h-5 invert" />
-                </a> */}
-                </div>
-              </div>
-
-              {/* Quick Links */}
-              <div>
-                <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">Home</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">Pricing</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">Gallery</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">Admission</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Contact Info */}
-              <div>
-                <h3 className="text-lg font-semibold mb-6">Contact</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-red-500" />
-                    <a href="mailto:zenithyouthhostel.mg@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-                      zenithyouthhostel.mg@gmail.com
-                    </a>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-red-500" />
-                    <a href="tel:+919410922354" className="text-gray-400 hover:text-white transition-colors">
-                      +91 94109 22354
-                    </a>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    <span className="text-gray-400">
-                      Paundha Bidholi Road, Bidholi, Dehradun
-                    </span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Map Preview */}
-              <div>
-                <div className="rounded-2xl overflow-hidden">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6881.703807774134!2d77.9607352!3d30.4119434!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d50069a381df%3A0x9a601001f97396fd!2sZenith%20Youth%20Luxury%20Hostel!5e0!3m2!1sen!2sin!4v1740334472357!5m2!1sen!2sin"
-                    width="100%"
-                    height="200"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
-              </div>
-            </div>
+      {/* Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10 items-center">
+        {/* Left Section - Logo & Social */}
+        <div>
+          <h2 className="text-xl font-bold flex items-center space-x-2">
+            <Mail size={22} />
+            <span>{logo}</span>
+          </h2>
+          <p className="mt-4 text-sm">Join Us</p>
+          <div className="flex space-x-3 mt-3">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-gray-800 rounded-full hover:bg-gray-600 transition"
+              >
+                {iconMap[social.icon]}
+              </a>
+            ))}
           </div>
         </div>
-      </footer>
-    </Element>
+
+        {/* Center Navigation Links */}
+        <div className="text-center">
+          <ul className="flex flex-wrap justify-center gap-2 md:space-y-2 md:flex-col">
+            {navigation.map((item, index) => (
+              <li key={index} className="hover:text-red-500 cursor-pointer flex">
+                <Link to={item.link} className="hover:text-red-500">{item.title}</Link>
+                {index < navigation.length - 1 && (
+                  <span className="mx-2 block md:hidden">|</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* Right Section - Contact & Map */}
+        <div className="text-right">
+          <div className="mt-4 rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src={mapLocation}
+              width="100%"
+              height="150"
+              className="rounded-lg shadow-md border-2 border-white"
+              style={{ borderRadius: "16px" }}
+              loading="lazy"
+            ></iframe>
+          </div>
+          <h3 className="font-bold">Contact</h3>
+          <p className="text-sm">Email: {contact.email}</p>
+          <p className="text-sm">Phone: {contact.phone}</p>
+          <p className="text-sm">Address: {contact.address}</p>
+
+        </div>
+      </div>
+    </footer>
   );
 };
 

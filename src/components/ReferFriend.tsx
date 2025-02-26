@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Share2, Gift } from 'lucide-react';
 
 const ReferFriend = () => {
   const [formData, setFormData] = useState({
@@ -23,83 +22,95 @@ const ReferFriend = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            {/* Left side - Form */}
-            <div className="w-full lg:w-1/2">
-              <div className="max-w-md">
-                <h2 className="text-4xl font-bold mb-2">
-                  Refer A <span className="text-red-500">Friend!</span>
-                </h2>
-                <p className="text-gray-600 mb-8">
-                  Enter Friend's Details
-                </p>
+    <section className="relative min-h-screen bg-white">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: '0.9'
+        }}
+      />
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <input
-                      type="text"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-100 border-transparent focus:border-red-500 focus:bg-white focus:ring-0"
-                      placeholder="Full Name"
-                    />
-                  </div>
+      {/* Content Container */}
+      <div className="relative container mx-auto px-4 py-20">
+        <div className="max-w-md">
+          {/* Heading Section - Outside the form card */}
+          <h2 className="text-4xl font-bold mb-2 text-gray-900">
+            Refer A <span className="text-red-500">Friend!</span>
+          </h2>
+          <p className="text-gray-700 mb-8">Enter Friend's Details</p>
 
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-100 border-transparent focus:border-red-500 focus:bg-white focus:ring-0"
-                      placeholder="Email"
-                    />
-                  </div>
+          {/* Form Section */}
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                    placeholder="Enter full name"
+                  />
+                </div>
 
-                  <div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-100 border-transparent focus:border-red-500 focus:bg-white focus:ring-0"
-                      placeholder="Phone"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                    placeholder="Enter email address"
+                  />
+                </div>
 
-                  <div>
-                    <input
-                      type="text"
-                      name="address"
-                      value={formData.address}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-100 border-transparent focus:border-red-500 focus:bg-white focus:ring-0"
-                      placeholder="Address"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                    placeholder="Enter phone number"
+                  />
+                </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3 px-6 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-lg hover:from-red-600 hover:to-orange-600 transition-all"
-                  >
-                    Submit Now
-                  </button>
-                </form>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                    placeholder="Enter address"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Right side - Image */}
-            <div className="w-full lg:w-1/2">
-              <img
-                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-                alt="Friends enjoying together"
-                className="w-full rounded-2xl"
-              />
-            </div>
+              <button
+                type="submit"
+                className="w-full py-3 px-6 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-lg hover:from-red-600 hover:to-orange-600 transition-all font-medium text-lg"
+              >
+                Submit Now
+              </button>
+            </form>
           </div>
         </div>
       </div>
